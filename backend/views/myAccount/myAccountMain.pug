@@ -1,0 +1,19 @@
+doctype
+html
+  head
+    meta(charset='UTF-8')
+    title= title
+    meta(name='viewport' content='width=device-width, user-scalable=no')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  body
+    .container
+      .profile-wrap
+        .profile
+          if user && user.id
+            .user-id= 'org_id : ' + user.id
+            .user-auth= 'user_group : ' + user.user_group
+            .user-insert_dt= 'user_insert_dt : ' + user.user_insert_dt
+            a#edit.btn(href=`myAccount/${user.id}/edit`) edit
+          else
+            a#logout.btn 유저정보없음
+      block content

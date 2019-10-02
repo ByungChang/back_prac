@@ -1,0 +1,29 @@
+doctype
+html
+  head
+    meta(charset='UTF-8')
+    title=title
+    meta(name='viewport' content='width=device-width, user-scalable=no')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  body
+    .container
+      .profile-wrap
+        .profile
+            if user && user.id
+              form#join-form(action='/myAccount/:id/edit' method='put')
+                .input-group
+                  label(for='edit-org_id') org_id : 
+                  input#join-email(type='text' name='org_id' value=user.id)
+                .input-group
+                  label(for='edit-user_group') user_group : 
+                  input#join-nick(type='text' name='user_group' value=user.user_group)
+                .input-group
+                  label(for='join-password') user_insert_dt : 
+                  input#join-password(type='text' name='user_insert_dt' value=user.user_insert_dt)
+                  if joinError
+                    .error-message= joinError
+                button#join-btn.btn(type='submit') 수정
+
+            else
+                a#logout.btn 유저정보없음
+      block content

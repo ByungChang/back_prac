@@ -1,0 +1,29 @@
+doctype
+html
+  head
+    meta(charset='UTF-8')
+    title 로그인페이지
+    meta(name='viewport' content='width=device-width, user-scalable=no')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    link(rel='stylesheet' href='/main.css')
+  body
+    .container
+      .profile-wrap
+        .profile
+          if user && user.id
+            .user-name= '안녕하세요! ' + user.id + '님'
+            a#logout.btn(href='/myAccount') 내 계정
+            a#logout.btn(href='/auth/logout') 로그아웃
+          else
+            form#login-form(action='/auth/login' method='post')
+              .input-group
+                label(for='org_id') org_id
+                input#email(type='text' name='org_id' required autofocus)
+              .input-group
+                label(for='user_pw') 비밀번호
+                input#password(type='password' name='user_pw' required)
+              if loginError
+                .error-message= loginError
+              button#login.btn(type='submit') 로그인
+          
+      block content
